@@ -1,7 +1,7 @@
 # SIS213Par2
 # Lista de tareas
 * Santiago Carlos Machicado Tarifa
-* Mauricio Gutierrez Pacheco
+* Mauricio Gutierrez Pacheco    
 En la siguiente aplicacion se realizara un programa que realize el control y listado de tareas de manera remota que contenga horarios y que mureste que la tarea se realizo.
 
 ## Analisis del problema
@@ -28,4 +28,5 @@ Puede implicar la inclusión de un historial de actividades o un registro de cua
 Se utilizara las heramientas:
 * GitHub
 * Html
+* Css
 * JavaScript
