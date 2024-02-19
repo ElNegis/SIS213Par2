@@ -39,7 +39,7 @@ function validarFormulario(e) {
 
 function agregarHTML() {
 
-    //limpiar el HTML
+
     while (tareas.firstChild) {
         tareas.removeChild(tareas.firstChild)
     }
@@ -77,6 +77,8 @@ function agregarHTML() {
     //persistir los datos con localStorage
     localStorage.setItem("tareas", JSON.stringify(task))
 
+    generarInforme();
+
 }
 
 function eliminarTarea(e) {
@@ -108,3 +110,28 @@ function completarTarea(e) {
         agregarHTML();
     }
 }
+
+const generarInformeBtn = document.getElementById("generarInformeBtn");
+
+generarInformeBtn.addEventListener("click", () => {
+    const informeRealizadas = task.filter(item => item.estado === true);
+    const informeNoRealizadas = task.filter(item => item.estado === false);
+
+    const informeTexto = `
+Informe de Tareas Realizadas:
+${informeRealizadas.map(item => `- ${item.tarea}`).join('\n')}
+
+Informe de Tareas No Realizadas:
+${informeNoRealizadas.map(item => `- ${item.tarea}`).join('\n')}
+    `;
+
+    const blob = new Blob([informeTexto], { type: 'text/plain' });
+    const enlaceDescarga = document.createElement('a');
+
+    enlaceDescarga.href = URL.createObjectURL(blob);
+    enlaceDescarga.download = 'InformeTareas.txt';
+
+    document.body.appendChild(enlaceDescarga);
+    enlaceDescarga.click();
+    document.body.removeChild(enlaceDescarga);
+});

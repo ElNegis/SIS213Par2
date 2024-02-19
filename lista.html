@@ -150,6 +150,16 @@ h5 {
     transform: scale(1.3);
 }
 
+#generarInformeBtn {
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Texto en color blanco */
+    padding: 10px 20px; /* Relleno interno del botón */
+    font-size: 16px; /* Tamaño del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón sobre el botón */
+    transition: background-color 0.3s; /* Efecto de transición en el color de fondo */
+}
 
 @media (max-width: 600px) {
     .contenedor {
@@ -184,13 +194,18 @@ h5 {
                 <p>Tarea 1</p>
                 <div class="botones">
                     <button class="eliminar" data-id="${item.id}">x</button>
-                    <button class="completada" data-id="${item.id}">?</button>
+                    <button class="completada" data-id="${item.id}">✓</button>
                 </div>
             </div>
             <!-- <h5>~SIN TAREAS~</h5> -->
 
         </div>
 
+    </div>
+    <div class="datos">
+        <p id="total">Total tareas: 0</p>
+        <p id="completadas">Tareas Completadas: 0</p>
+        <button id="generarInformeBtn">Generar Informe</button>
     </div>
 
 
