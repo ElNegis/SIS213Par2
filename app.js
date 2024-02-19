@@ -52,16 +52,24 @@ function agregarHTML() {
             elemento.classList.add('m6');
             elemento.classList.add('w3-margin-bottom');
             elemento.classList.add('w3-margin');
-            elemento.classList.add('w3-light-blue');
+            elemento.classList.add('w3-panel');
+            elemento.classList.add('w3-pale-blue');
+            elemento.classList.add('w3-leftbar');
+            elemento.classList.add('w3-rightbar');
+            elemento.classList.add('w3-border-blue');
+            elemento.classList.add('w3-border-blue');
+            
+                
             
 
             elemento.innerHTML = `
-                <p>${item.estado ? (
+            
+                <h4 class="w3-cursive">${item.estado ? (
                     `<span class='completa'>${item.tarea}</span>`
                 ) : (
                     `<span>${item.tarea}</span>`
-                )}</p>
-                <div class="botones w3-padding">
+                )}</h4>
+                <div class="botones w3-padding w3-half">
                     <button class="eliminar w3-button" data-id="${item.id}">x</button>
                     <button class="completada w3-button" data-id="${item.id}">✓</button>
                 </div>
