@@ -9,146 +9,145 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Task</title>
     <style>
         * {
-    margin: 0px;
-}
+            margin: 0px;
+        }
 
-html {
-    box-sizing: border-box;
-}
-
-
-body {
-    background-image: url('/Fotos/wallp.jpg');
-  min-height: 100%;
-}
-
-.bgimg-1 {
-  background-image: url('/Fotos/wallp.jpg');
-  min-height: 100%;
-}
-
-h1 {
-    text-align: center;
-    text-transform: uppercase;
-    padding: 10px;
-    background-color: rgb(216, 102, 82);
-    color: aliceblue;
-}
-
-h5 {
-    text-align: center;
-    font-size: 18px;
-    padding: 30px;
-}
-
-.completa {
-    text-decoration: line-through;
-    color: rgb(30, 139, 255);
-}
-
-/* DATOS */
-.datos {
-    background-color: rgb(138, 100, 228);
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    gap: 10px;
-}
-
-.datos p {
-    background-color: rgb(20, 32, 47);
-    color: #f0f8ff;
-    padding: 6px 10px;
-    border-radius: 5px;
-}
+        html {
+            box-sizing: border-box;
+        }
 
 
-/* CONTENEDOR */
-.contenedor {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 15px;
-}
+        body {
+            background: rgb(63, 94, 251);
+            background: radial-gradient(circle, rgba(63, 94, 251, 1) 37%, rgba(32, 82, 152, 1) 79%);
+            min-height: 100%;
+        }
 
-.contenedor .formulario {
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: rgb(245, 88, 55 ) ;
-    color: #fff;
-    max-height: 110px;
-}
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            padding: 10px;
+            background-color: rgb(216, 102, 82);
+            color: aliceblue;
+        }
 
-.contenedor .formulario input[type="text"] {
-    border: none;
-    padding: 8px;
-}
+        h5 {
+            text-align: center;
+            font-size: 18px;
+            padding: 30px;
+        }
 
-.contenedor .formulario input[type="text"]:focus {
-    outline: none;
-    border-bottom: 5px solid rgb(216, 230, 91);
-    ;
-}
+        .completa {
+            text-decoration: line-through;
+            color: rgb(30, 139, 255);
+        }
 
-.contenedor .formulario input[type="submit"] {
-    border: none;
-    padding: 10px;
-    background-color: rgb(9, 34, 69);
-    color: #fff;
-    cursor: pointer;
-}
+        /* DATOS */
+        .datos {
+            background-color: rgb(138, 100, 228);
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            gap: 10px;
+        }
+
+        .datos p {
+            background-color: rgb(20, 32, 47);
+            color: #f0f8ff;
+            padding: 6px 10px;
+            border-radius: 5px;
+        }
+
+
+        /* CONTENEDOR */
+        .contenedor {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin: 15px;
+        }
+
+        .contenedor .formulario {
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgb(245, 88, 55);
+            color: #fff;
+            max-height: 110px;
+        }
+
+        .contenedor .formulario input[type="text"] {
+            border: none;
+            padding: 8px;
+        }
+
+        .contenedor .formulario input[type="text"]:focus {
+            outline: none;
+            border-bottom: 5px solid rgb(216, 230, 91);
+            ;
+        }
+
+        .contenedor .formulario input[type="submit"] {
+            border: none;
+            padding: 10px;
+            background-color: rgb(9, 34, 69);
+            color: #fff;
+            cursor: pointer;
+        }
 
 
 
 
-/* TAREAS */
-.contenedor .tareas {
-    padding: 10px;
-    margin: 10px;
-    background-color: rgb(144, 91, 214);
-}
+        /* TAREAS */
+        .contenedor .tareas {
+            padding: 10px;
+            margin: 10px;
+            background-color: rgb(144, 91, 214);
+        }
 
-.contenedor .item-tarea {
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffffff;
-    padding: 10px;
-    margin: 10px 2px;
-}
+        .contenedor .item-tarea {
+            display: flex;
+            justify-content: space-between;
+            background-color: #ffffff;
+            padding: 10px;
+            margin: 10px 2px;
+        }
 
-.eliminar {
-    border: none;
-    background-color: rgb(255, 0, 89);
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform ease 300ms;
-    padding: 8px;
-}
+        .eliminar {
+            border: none;
+            background-color: rgb(255, 0, 89);
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform ease 300ms;
+            padding: 8px;
+        }
 
-.eliminar:hover {
-    transform: scale(1.3);
-}
+        .eliminar:hover {
+            transform: scale(1.3);
+        }
 
-.completada {
-    border: none;
-    background-color: rgb(0, 136, 255);
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform ease 300ms;
-    padding: 8px;
-}
+        .completada {
+            border: none;
+            background-color: rgb(0, 136, 255);
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform ease 300ms;
+            padding: 8px;
+        }
 
-.completada:hover {
-    transform: scale(1.3);
-}
+        .completada:hover {
+            transform: scale(1.3);
+        }
 
 #generarInformeBtn {
     background-color: #4CAF50; /* Color de fondo verde */
@@ -161,34 +160,64 @@ h5 {
     transition: background-color 0.3s; /* Efecto de transición en el color de fondo */
 }
 
-@media (max-width: 600px) {
-    .contenedor {
-        display: grid;
-        grid-template-columns: 1fr;
-        margin: 15px;
-    }
-}
+        @media (max-width: 600px) {
+            .contenedor {
+                display: grid;
+                grid-template-columns: 1fr;
+                margin: 15px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="w3-top">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="index.html" class="w3-bar-item w3-button" style="color: #f0f8ff;">HOME</a>
+            <a href="lista.html" class="w3-bar-item w3-button w3-hide-small" style="color: #f0f8ff;"><i
+                    class="fa fa-th"></i> Listado de tareas</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+                <i class="fa fa-search"></i>
+            </a>
+        </div>
 
-    <h1>LISTA DE TAREAS</h1>
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">GRUPO</a>
+            <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">APLICACION</a>
+            <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+        </div>
 
-    <div class="datos">
-        <p id="total">Total tareas: 0</p>
-        <p id="completadas">Tareas Completadas: 0</p>
     </div>
+
+    <div class="w3-content w3-container w3-padding-64 bgimg-1 w3-display-container w3-opacity-min">
+        <div class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+            <p id="total">Total tareas: 0</p>
+            <p id="completadas">Tareas Completadas: 0</p>
+        </div>
+    </div>
+
+
+
 
     <div class="contenedor">
 
-        <form class="formulario" id="formulario">
-            <h4>FORMULARIO</h4>
-            <input type="text" id="tarea">
-            <input type="submit" value="Agregar">
-        </form>
+        <div class="w3-container w3-khaki w3-container">
+            <form class="w3-container" id="formulario">
+                <div class="w3-container">
+                    <p>Agregar tarea   <input class="w3-input" type="text" id="tarea">  <input class="w3-input" type="submit" value="Agregar"></p>
+                    
+                </div>
+                
+            </form>
+        </div>
 
-        <div class="tareas" id="tareas">
+
+        <div class="tareas w3-container w3-khaki" id="tareas">
 
             <div class="item-tarea">
                 <p>Tarea 1</p>
