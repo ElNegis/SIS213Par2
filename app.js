@@ -47,16 +47,23 @@ function agregarHTML() {
     if (task.length > 0) {
         task.forEach(item => {
             const elemento = document.createElement('div');
-            elemento.classList.add('item-tarea');
+            elemento.classList.add('w3-col');
+            elemento.classList.add('l2');
+            elemento.classList.add('m6');
+            elemento.classList.add('w3-margin-bottom');
+            elemento.classList.add('w3-margin');
+            elemento.classList.add('w3-light-blue');
+            
+
             elemento.innerHTML = `
                 <p>${item.estado ? (
                     `<span class='completa'>${item.tarea}</span>`
                 ) : (
                     `<span>${item.tarea}</span>`
                 )}</p>
-                <div class="botones">
-                    <button class="eliminar" data-id="${item.id}">x</button>
-                    <button class="completada" data-id="${item.id}">✓</button>
+                <div class="botones w3-padding">
+                    <button class="eliminar w3-button" data-id="${item.id}">x</button>
+                    <button class="completada w3-button" data-id="${item.id}">✓</button>
                 </div>
             `
             tareas.appendChild(elemento)
