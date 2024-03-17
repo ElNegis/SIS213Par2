@@ -12,7 +12,9 @@ var opciones = ["Opción 1", "Opción 2", "Opción 3"];
     document.addEventListener("DOMContentLoaded", () => {
         let datosLS = JSON.parse(localStorage.getItem("tareas")) || [];
         task = datosLS;
+        generarResumenCategorias();
         agregarHTML();
+        
     })
 })()
 
@@ -45,19 +47,26 @@ function mostrarFormulario() {
     }
   }
 
-function validarFormulario(e) {
+  function validarFormulario(e) {
     e.preventDefault();
-    const tarea = document.querySelector("#tarea").value;
-    const fecha = document.querySelector("#fechaTarea").value;
-    if (tarea.trim().length === 0 || fecha.trim().length === 0) {
-        console.log('vacio');
-        return
+    const tareaInput = document.querySelector("#tarea");
+    const fechaInput = document.querySelector("#fechaTarea");
+    const categoriaSelect = document.querySelector("#categoria");
+    const tarea = tareaInput.value;
+    const fecha = fechaInput.value;
+    const categoria = categoriaSelect.value;
+    if (tarea.trim() === '' || fecha.trim() === '' || categoria.trim() === '') {
+        console.log('Todos los campos son obligatorios.');
+        return;
     }
-    const objTarea = { id: Date.now(), tarea: tarea, estado: false,fecha: fecha };
-    task = [...task, objTarea];
+    const objTarea = { id: Date.now(), tarea, estado: false, fecha, categoria };
+    task.push(objTarea);
+    localStorage.setItem("tareas", JSON.stringify(task));
     formulario.reset();
     agregarHTML();
+    generarResumenCategorias();
 }
+
 
 
 function agregarHTML() {
@@ -90,6 +99,7 @@ function agregarHTML() {
                 )}</h4>
                 <div class="botones w3-padding w3-half">
                     <h4><small>${item.fecha}</small></h4>
+                    <h4 class="w3-cursive">${item.categoria}</h4>
                     <button class="eliminar w3-button" data-id="${item.id}">x</button>
                     <button class="completada w3-button" data-id="${item.id}">✓</button>
                 </div>
@@ -123,7 +133,9 @@ function eliminarTarea(e) {
         mostrarNotificacion("Tarea completamente eliminada!");
         task = nuevasTareas;
         agregarHTML();
-        mostrarNotificacion("Tarea eliminada con éxito");     
+        generarResumenCategorias();
+        mostrarNotificacion("Tarea eliminada con éxito");
+
     }
 }
 function completarTarea(e) {
@@ -140,6 +152,7 @@ function completarTarea(e) {
         })
         task = nuevasTareas;
         agregarHTML();
+        generarResumenCategorias();
         
     }
 }
@@ -164,9 +177,11 @@ generarInformeBtn.addEventListener("click", () => {
     const informeTexto = `
 Informe de Tareas Realizadas:
 ${informeRealizadas.map(item => `- ${item.tarea}`).join('\n')}
+${informeRealizadas.map(item => `- ${item.fecha}`).join('\n')}
 
 Informe de Tareas No Realizadas:
 ${informeNoRealizadas.map(item => `- ${item.tarea}`).join('\n')}
+${informeNoRealizadas.map(item => `- ${item.fecha}`).join('\n')}
     `;
 
     const blob = new Blob([informeTexto], { type: 'text/plain' });
@@ -179,3 +194,39 @@ ${informeNoRealizadas.map(item => `- ${item.tarea}`).join('\n')}
     enlaceDescarga.click();
     document.body.removeChild(enlaceDescarga);
 });
+
+function generarResumenCategorias() {
+    const resumen = document.getElementById('resumenCategorias');
+    const categorias = ['Deportes', 'Casa', 'Salud', 'Escuela'];
+    let tareasPorCategoria = {
+        'Deportes': [],
+        'Casa': [],
+        'Salud': [],
+        'Escuela': []
+    };
+
+    task.forEach(tarea => {
+        if (!tarea.estado && tareasPorCategoria.hasOwnProperty(tarea.categoria)) {
+            tareasPorCategoria[tarea.categoria].push(tarea);
+        }
+    });
+
+    let contenidoHTML = '<div class="w3-row">';
+    categorias.forEach(categoria => {
+        contenidoHTML += `<div class="w3-col l3 m6 w3-margin-bottom">
+                              <div class="w3-container w3-card w3-white w3-padding-16">
+                                  <h3>${categoria}</h3>
+                                  <ul>`;
+        tareasPorCategoria[categoria].forEach(tarea => {
+            contenidoHTML += `<li>${tarea.tarea} - ${tarea.fecha}</li>`;
+        });
+        contenidoHTML += `   </ul>
+                              </div>
+                          </div>`;
+    });
+    contenidoHTML += '</div>';
+
+    resumen.innerHTML = contenidoHTML; 
+}
+
+

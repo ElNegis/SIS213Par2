@@ -275,6 +275,22 @@
 #xp {
   background-color: #ffbe5d;
 }
+#resumenCategorias ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#resumenCategorias li {
+    background-color: #408acf;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.w3-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
 
     </style>
 </head>
@@ -329,6 +345,13 @@
                 </select><br><br>
                 <button type="button" onclick="agregarOpcion()">Agregar Opción</button><br><br>
                 <input onclick="ocultarFormulario()" class="w3-input" type="submit" value="Agregar">
+                <select id="categoria" class="w3-select">
+                  <option value="">Seleccione una categoría</option>
+                  <option value="Deportes">Deportes</option>
+                  <option value="Casa">Casa</option>
+                  <option value="Salud">Salud</option>
+                  <option value="Escuela">Escuela</option>
+                </select>
                 
             </div>
             
@@ -395,17 +418,15 @@
         </div>
 
     </div>
-            <div id="tareas-en-curso" class="tareas-en-curso">
-                <h3>Tareas en Curso</h3>
-                <!-- Aquí se listarán las tareas en curso -->
-            </div>
-    
-
     <script src="app.js"></script>
     <div id="notification-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 100; display: none;">
         <div id="notification" style="background-color: #4CAF50; color: white; padding: 16px; margin: 5px 0;">
            registrado
         </div>
+    </div>
+    <div class="w3-container" id="resumenCategorias">
+      <h2>Resumen de Tareas por Categoría</h2>
+
     </div>
     
 
