@@ -132,6 +132,23 @@ function eliminarTarea(e) {
         agregarHTML();
     }
 }
+function completarTarea(e) {
+    if (e.target.classList.contains("completada")) {
+        const tareaID = Number(e.target.getAttribute("data-id"));
+        const nuevasTareas = task.map(item => {
+            if (item.id === tareaID) {
+                item.estado = !item.estado;
+                mostrarNotificacion("Tarea completada!"); // Mostrar notificación
+                return item;
+            } else {
+                return item;
+            }
+        });
+
+        task = nuevasTareas;
+        agregarHTML();
+    }
+}
 
 
 //completar tarea

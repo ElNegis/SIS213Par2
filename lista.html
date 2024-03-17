@@ -18,36 +18,14 @@
             margin: 0px;
         }
 
-        #boton-flotante {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #formularioap {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
         html {
             box-sizing: border-box;
         }
 
 
         body {
-            background-image: url("/Fotos/wp2.jpg");
+            background: rgb(63, 94, 251);
+            background: radial-gradient(circle, rgba(63, 94, 251, 1) 37%, rgba(32, 82, 152, 1) 79%);
             min-height: 100%;
         }
 
@@ -171,6 +149,16 @@
             transform: scale(1.3);
         }
 
+#generarInformeBtn {
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 10px 20px;
+    font-size: 16px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
 
         @media (max-width: 600px) {
             .contenedor {
@@ -210,54 +198,52 @@
         <div class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
             <p id="total">Total tareas: 0</p>
             <p id="completadas">Tareas Completadas: 0</p>
-            <button class="w3-button" id="generarInformeBtn">Generar Informe</button>
         </div>
     </div>
 
-    <button id="boton-flotante" onclick="mostrarFormulario()">Mostrar Formulario</button>
 
 
-    <div id="formularioap" class="w3-card-4">
 
-        <header class="w3-container w3-blue">
-          <h1>TaskVerse</h1>
-        </header>
-        
-        <form class="w3-container" id="formulario">
-            <div class="w3-container w3-margin" >
-                <input class="w3-input" type="text" placeholder="Nombre de la tarea" id="tarea">
-                <input class="w3-input" type="text" placeholder="Detalles" id="tarea">
-                <input class="w3-input" type="date" placeholder="Fecha " id="tarea">
-                <select id="opcion" name="opcion">
-                </select><br><br>
-                <button type="button" onclick="agregarOpcion()">Agregar Opción</button><br><br>
-                <input onclick="ocultarFormulario()" class="w3-input" type="submit" value="Agregar">
+    <div class="contenedor">
+
+        <div class="w3-container w3-khaki w3-container">
+            <form class="w3-container" id="formulario">
+                <div class="w3-container">
+                    <p>Agregar tarea   <input class="w3-input" type="text" id="tarea">  <input class="w3-input" type="submit" value="Agregar"></p>
+                    
+                </div>
                 
-            </div>
-            
-        </form>
-        
-        <footer class="w3-container w3-blue">
-          <h5>Tareas</h5>
-        </footer>
-        
+            </form>
         </div>
 
-    <div class="w3-container">
 
-        
-        
+        <div class="tareas w3-container w3-khaki" id="tareas">
 
-        <div class="tareas w3-container w3-khaki w3-row-padding" id="tareas">
-            
+            <div class="item-tarea">
+                <p>Tarea 1</p>
+                <div class="botones">
+                    <button class="eliminar" data-id="${item.id}">x</button>
+                    <button class="completada" data-id="${item.id}">✓</button>
+                </div>
+            </div>
             <!-- <h5>~SIN TAREAS~</h5> -->
 
         </div>
 
     </div>
+    <div class="datos">
+        <p id="total">Total tareas: 0</p>
+        <p id="completadas">Tareas Completadas: 0</p>
+        <button id="generarInformeBtn">Generar Informe</button>
+    </div>
 
 
     <script src="app.js"></script>
+    <div id="notification-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 100; display: none;">
+    <div id="notification" style="background-color: #4CAF50; color: white; padding: 16px; margin: 5px 0;">
+        Tarea completada
+    </div>
+</div>
 </body>
 
 </html>
