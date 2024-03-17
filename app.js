@@ -131,8 +131,11 @@ function eliminarTarea(e) {
         const tareaID = Number(e.target.getAttribute("data-id"));
         //eliminamos con el array method filter
         const nuevasTareas = task.filter((item) => item.id !== tareaID);
+        mostrarNotificacion("Tarea completamente eliminada!");
         task = nuevasTareas;
         agregarHTML();
+
+        mostrarNotificacion("Tarea eliminada con éxito");
     }
 }
 
@@ -143,6 +146,7 @@ function completarTarea(e) {
         const tareaID = Number(e.target.getAttribute("data-id"));
         const nuevasTareas = task.map(item => {
             if (item.id === tareaID) {
+                mostrarNotificacion("Tarea completada!");
                 item.estado = !item.estado;
                 return item;
             } else {
@@ -155,6 +159,17 @@ function completarTarea(e) {
         agregarHTML();
     }
 }
+function mostrarNotificacion(mensaje) {
+    const notificationContainer = document.getElementById('notification-container');
+    const notification = document.getElementById('notification');
+    notification.textContent = mensaje; 
+    notificationContainer.style.display = 'block'; 
+
+    setTimeout(() => {
+        notificationContainer.style.display = 'none';
+    }, 3000);
+}
+
 
 const generarInformeBtn = document.getElementById("generarInformeBtn");
 
