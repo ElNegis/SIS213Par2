@@ -18,6 +18,29 @@
             margin: 0px;
         }
 
+        #boton-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #formularioap {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
         html {
             box-sizing: border-box;
         }
@@ -191,20 +214,38 @@
         </div>
     </div>
 
+    <button id="boton-flotante" onclick="mostrarFormulario()">Mostrar Formulario</button>
 
 
+    <div id="formularioap" class="w3-card-4">
+
+        <header class="w3-container w3-blue">
+          <h1>TaskVerse</h1>
+        </header>
+        
+        <form class="w3-container" id="formulario">
+            <div class="w3-container w3-margin" >
+                <input class="w3-input" type="text" placeholder="Nombre de la tarea" id="tarea">
+                <input class="w3-input" type="text" placeholder="Detalles" id="tarea">
+                <input class="w3-input" type="date" placeholder="Fecha " id="tarea">
+                <select id="opcion" name="opcion">
+                </select><br><br>
+                <button type="button" onclick="agregarOpcion()">Agregar Opción</button><br><br>
+                <input onclick="ocultarFormulario()" class="w3-input" type="submit" value="Agregar">
+                
+            </div>
+            
+        </form>
+        
+        <footer class="w3-container w3-blue">
+          <h5>Tareas</h5>
+        </footer>
+        
+        </div>
 
     <div class="w3-container">
 
-        <div class="w3-container w3-khaki w3-container">
-            <form class="w3-container" id="formulario">
-                <div class="w3-container w3-margin" >
-                    <p><input class="w3-input" type="text" placeholder="Nombre de la tarea" id="tarea">  <input class="w3-input" type="submit" value="Agregar"></p>
-                    
-                </div>
-                
-            </form>
-        </div>
+        
         
 
         <div class="tareas w3-container w3-khaki w3-row-padding" id="tareas">

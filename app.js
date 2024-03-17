@@ -3,6 +3,7 @@ const tareas = document.querySelector("#tareas");
 const total = document.querySelector("#total");
 const completadas = document.querySelector("#completadas");
 let task = [];
+var opciones = ["Opción 1", "Opción 2", "Opción 3"];
 /* EVENTOS */
 (() => {
     formulario.addEventListener('submit', validarFormulario);
@@ -14,6 +15,35 @@ let task = [];
         agregarHTML();
     })
 })()
+
+function generarOpciones() {
+    var select = document.getElementById("opcion");
+    select.innerHTML = ""; // Limpiar opciones existentes
+    opciones.forEach(function(opcion, index) {
+      var nuevaOpcion = document.createElement("option");
+      nuevaOpcion.text = opcion;
+      nuevaOpcion.value = "opcion" + (index + 1);
+      select.appendChild(nuevaOpcion);
+    });
+  }
+
+function mostrarFormulario() {
+    var formulario = document.getElementById("formularioap");
+    formulario.style.display = "block";
+  }
+
+  function ocultarFormulario() {
+    var formulario = document.getElementById("formularioap");
+    formulario.style.display = "none";
+  }
+
+  function agregarOpcion() {
+    var nuevaOpcion = prompt("Ingrese la nueva opción:");
+    if (nuevaOpcion) {
+      opciones.push(nuevaOpcion);
+      generarOpciones();
+    }
+  }
 
 /* FUNCIONES */
 function validarFormulario(e) {
