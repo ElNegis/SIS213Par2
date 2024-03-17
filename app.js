@@ -58,9 +58,6 @@ function agregarHTML() {
             elemento.classList.add('w3-rightbar');
             elemento.classList.add('w3-border-blue');
             elemento.classList.add('w3-border-blue');
-            
-                
-            
 
             elemento.innerHTML = `
             
