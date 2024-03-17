@@ -18,7 +18,7 @@ var opciones = ["Opción 1", "Opción 2", "Opción 3"];
 
 function generarOpciones() {
     var select = document.getElementById("opcion");
-    select.innerHTML = ""; // Limpiar opciones existentes
+    select.innerHTML = "";
     opciones.forEach(function(opcion, index) {
       var nuevaOpcion = document.createElement("option");
       nuevaOpcion.text = opcion;
@@ -45,25 +45,18 @@ function mostrarFormulario() {
     }
   }
 
-/* FUNCIONES */
 function validarFormulario(e) {
     e.preventDefault();
-    //validar los campos
     const tarea = document.querySelector("#tarea").value;
-    if (tarea.trim().length === 0) {
+    const fecha = document.querySelector("#fechaTarea").value;
+    if (tarea.trim().length === 0 || fecha.trim().length === 0) {
         console.log('vacio');
         return
     }
-
-    //creamos el objeto tarea
-    const objTarea = { id: Date.now(), tarea: tarea, estado: false };
-    //agregamos al array sin mutar dicho arreglo
+    const objTarea = { id: Date.now(), tarea: tarea, estado: false,fecha: fecha };
     task = [...task, objTarea];
     formulario.reset();
-
-    //agregamos al HTML
     agregarHTML();
-
 }
 
 
@@ -88,10 +81,6 @@ function agregarHTML() {
             elemento.classList.add('w3-rightbar');
             elemento.classList.add('w3-border-blue');
             elemento.classList.add('w3-border-blue');
-            
-                
-            
-
             elemento.innerHTML = `
             
                 <h4 class="w3-cursive">${item.estado ? (
@@ -100,16 +89,18 @@ function agregarHTML() {
                     `<span>${item.tarea}</span>`
                 )}</h4>
                 <div class="botones w3-padding w3-half">
+                    <h4><small>${item.fecha}</small></h4>
                     <button class="eliminar w3-button" data-id="${item.id}">x</button>
                     <button class="completada w3-button" data-id="${item.id}">✓</button>
                 </div>
+                
             `
             tareas.appendChild(elemento)
         });
 
     } else {
         const mensaje = document.createElement("h5");
-        mensaje.textContent = "~SIN TAREAS~"
+        mensaje.textContent = "~SIN TAREAS PENDIENTES~"
         tareas.appendChild(mensaje)
     }
 
@@ -118,29 +109,23 @@ function agregarHTML() {
 
     total.textContent = `Total tareas: ${totalTareas}`;
     completadas.textContent = `Tareas Completadas: ${tareasCompletas}`;
-
-    //persistir los datos con localStorage
     localStorage.setItem("tareas", JSON.stringify(task))
 
     generarInforme();
+    actualizarEstadisticasDeTareas();
 
 }
 
 function eliminarTarea(e) {
     if (e.target.classList.contains("eliminar")) {
         const tareaID = Number(e.target.getAttribute("data-id"));
-        //eliminamos con el array method filter
         const nuevasTareas = task.filter((item) => item.id !== tareaID);
         mostrarNotificacion("Tarea completamente eliminada!");
         task = nuevasTareas;
         agregarHTML();
-
-        mostrarNotificacion("Tarea eliminada con éxito");
+        mostrarNotificacion("Tarea eliminada con éxito");     
     }
 }
-
-
-//completar tarea
 function completarTarea(e) {
     if (e.target.classList.contains("completada")) {
         const tareaID = Number(e.target.getAttribute("data-id"));
@@ -153,10 +138,9 @@ function completarTarea(e) {
                 return item
             }
         })
-
-        //editamos el arreglo
         task = nuevasTareas;
         agregarHTML();
+        
     }
 }
 function mostrarNotificacion(mensaje) {
