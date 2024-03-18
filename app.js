@@ -162,38 +162,10 @@ function agregarHTML() {
 }
 
 function editarTarea(id) {
-<<<<<<< HEAD
-    const tareaNombre = document.getElementById(`tarea-nombre-${id}`);
-    const tareaFecha = document.getElementById(`tarea-fecha-${id}`);
-    const tareaCategoria = document.getElementById(`tarea-categoria-${id}`);
-    const botonEditar = document.querySelector(`.editar[onclick="editarTarea(${id})"]`);
-
-    // Verifica si la tarea ya está en modo edición
-    if (botonEditar.textContent === 'Guardar') {
-        const tareaIndex = task.findIndex(tarea => tarea.id === id);
-        task[tareaIndex].tarea = tareaNombre.textContent;
-        task[tareaIndex].fecha = tareaFecha.textContent;
-        task[tareaIndex].categoria = tareaCategoria.textContent;
-        localStorage.setItem("tareas", JSON.stringify(task));
-        botonEditar.textContent = 'Editar';
-        tareaNombre.contentEditable = "false";
-        tareaFecha.contentEditable = "false";
-        tareaCategoria.contentEditable = "false";
-        mostrarNotificacion("Tarea actualizada");
-    } else {
-        botonEditar.textContent = 'Guardar';
-        tareaNombre.contentEditable = "true";
-        tareaFecha.contentEditable = "true";
-        tareaCategoria.contentEditable = "true";
-    }
-    mostrarNotificacion("Tarea actualizada");
-    generarResumenCategorias(); 
-=======
     mostrarFormulario();
     idglobal=id;
     flageditar=true;
     validarFormulario;
->>>>>>> 0aa80c2dda3b0f1b4549b2504cf770ae0da75edf
 }
 
 function obtenerDiasRestantes(fecha) {
