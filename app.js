@@ -78,14 +78,15 @@ function mostrarFormulario() {
 
 
 function agregarHTML() {
-
-
     while (tareas.firstChild) {
-        tareas.removeChild(tareas.firstChild)
+        tareas.removeChild(tareas.firstChild);
     }
 
     if (task.length > 0) {
         task.forEach(item => {
+            // Calcular días restantes para cada tarea
+            const diasRestantes = obtenerDiasRestantes(item.fecha);
+
             const elemento = document.createElement('div');
             elemento.classList.add('w3-col');
             elemento.classList.add('l2');
@@ -99,40 +100,31 @@ function agregarHTML() {
             elemento.classList.add('w3-border-blue');
             elemento.classList.add('w3-border-blue');
             elemento.innerHTML = `
-            
-                <h4 class="w3-cursive">${item.estado ? (
-                    `<span class='completa'>${item.tarea}</span>`
-                ) : (
-                    `<span>${item.tarea}</span>`
-                )}</h4>
+                <h4 class="w3-cursive">${item.estado ? `<span class='completa'>${item.tarea}</span>` : `<span>${item.tarea}</span>`}</h4>
                 <div class="botones w3-padding w3-half">
                     <h4><small>${item.fecha}</small></h4>
                     <h4 class="w3-cursive">${item.categoria}</h4>
+                    <div>Días restantes: <span class="dias-restantes">${diasRestantes}</span></div> <!-- Añadido -->
                     <button class="editar w3-button" onclick="editarTarea(${item.id})">Editar</button>
-                    <button class="eliminar w3-button" data-id="${item.id}">x</button>
-                    <button class="completada w3-button" data-id="${item.id}">✓</button>
+                    <button class="eliminar w3-button" data-id="${item.id}">Eliminar</button>
+                    <button class="completada w3-button" data-id="${item.id}">Completar</button>
                 </div>
-                
-            `
-            tareas.appendChild(elemento)
+            `;
+            tareas.appendChild(elemento);
         });
-
     } else {
         const mensaje = document.createElement("h5");
-        mensaje.textContent = "~SIN TAREAS PENDIENTES~"
-        tareas.appendChild(mensaje)
+        mensaje.textContent = "~SIN TAREAS PENDIENTES~";
+        tareas.appendChild(mensaje);
     }
 
     let totalTareas = task.length;
     let tareasCompletas = task.filter(item => item.estado === true).length;
-
     total.textContent = `Total tareas: ${totalTareas}`;
     completadas.textContent = `Tareas Completadas: ${tareasCompletas}`;
-    localStorage.setItem("tareas", JSON.stringify(task))
-
-    actualizarEstadisticasDeTareas();
-
+    localStorage.setItem("tareas", JSON.stringify(task));
 }
+
 function editarTarea(id) {
     const tareaNombre = document.getElementById(`tarea-nombre-${id}`);
     const tareaFecha = document.getElementById(`tarea-fecha-${id}`);
