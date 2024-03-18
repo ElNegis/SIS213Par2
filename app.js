@@ -171,6 +171,8 @@ function editarTarea(id) {
         tareaFecha.contentEditable = "true";
         tareaCategoria.contentEditable = "true";
     }
+    mostrarNotificacion("Tarea actualizada");
+    generarResumenCategorias(); 
 }
 
 function obtenerDiasRestantes(fecha) {
