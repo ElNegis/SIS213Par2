@@ -14,6 +14,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Task</title>
     <style>
+      /* Mejoras generales en el estilo de los paneles de categorías */
+.w3-container.w3-card.w3-white.w3-padding-16 {
+    background-color: #fff; /* Color de fondo claro */
+    color: #333; /* Color de texto oscuro para contraste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidad */
+    border-radius: 8px; /* Bordes redondeados */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para transformación y sombra */
+    overflow: hidden; /* Asegura que no se desborde el contenido */
+}
+
+.w3-container.w3-card.w3-white.w3-padding-16:hover {
+    transform: translateY(-5px); /* Efecto 'levitar' al pasar el mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el mouse */
+}
+
+/* Mejoras en la tipografía para mejor legibilidad */
+.w3-container h3 {
+    font-size: 20px; /* Tamaño de fuente más grande para títulos */
+    margin-bottom: 16px; /* Más espacio debajo de los títulos */
+    color: #007bff; /* Color de tema para títulos */
+    font-weight: 600; /* Peso de fuente para títulos */
+}
+
+.w3-container ul {
+    padding-left: 20px; /* Espacio para la lista */
+}
+
+.w3-container li {
+    line-height: 1.6; /* Espaciado de línea para lista */
+    margin-bottom: 10px; /* Espacio entre ítems de lista */
+}
+
+/* Estilo específico para el resumen de categorías */
+#resumenCategorias .w3-col {
+    padding: 0 8px; /* Espaciado interno ajustado para columnas */
+}
+
+@media (max-width: 600px) {
+    #resumenCategorias .w3-col {
+        margin-bottom: 20px; /* Espaciado adicional entre categorías en móviles */
+    }
+}
         /* Modo oscuro */
   .dark-mode {
     background-color: #1a1a1a;
