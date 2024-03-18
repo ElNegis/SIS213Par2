@@ -128,7 +128,6 @@ function agregarHTML() {
     completadas.textContent = `Tareas Completadas: ${tareasCompletas}`;
     localStorage.setItem("tareas", JSON.stringify(task))
 
-    generarInforme();
     actualizarEstadisticasDeTareas();
 
 }
