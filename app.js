@@ -10,6 +10,7 @@ var opciones = ["Opción 1", "Opción 2", "Opción 3"];
     tareas.addEventListener("click", eliminarTarea);
     tareas.addEventListener("click", completarTarea);
     document.addEventListener("DOMContentLoaded", () => {
+        mostrarDiasRestantesEnNotificacion();
         let datosLS = JSON.parse(localStorage.getItem("tareas")) || [];
         task = datosLS;
         inicializarEstadisticas();
@@ -107,6 +108,7 @@ function agregarHTML() {
                 <div class="botones w3-padding w3-half">
                     <h4><small>${item.fecha}</small></h4>
                     <h4 class="w3-cursive">${item.categoria}</h4>
+                    <button class="editar w3-button" onclick="editarTarea(${item.id})">Editar</button>
                     <button class="eliminar w3-button" data-id="${item.id}">x</button>
                     <button class="completada w3-button" data-id="${item.id}">✓</button>
                 </div>
@@ -131,6 +133,32 @@ function agregarHTML() {
     actualizarEstadisticasDeTareas();
 
 }
+function editarTarea(id) {
+    const tareaNombre = document.getElementById(`tarea-nombre-${id}`);
+    const tareaFecha = document.getElementById(`tarea-fecha-${id}`);
+    const tareaCategoria = document.getElementById(`tarea-categoria-${id}`);
+    const botonEditar = document.querySelector(`.editar[onclick="editarTarea(${id})"]`);
+
+    // Verifica si la tarea ya está en modo edición
+    if (botonEditar.textContent === 'Guardar') {
+        const tareaIndex = task.findIndex(tarea => tarea.id === id);
+        task[tareaIndex].tarea = tareaNombre.textContent;
+        task[tareaIndex].fecha = tareaFecha.textContent;
+        task[tareaIndex].categoria = tareaCategoria.textContent;
+        localStorage.setItem("tareas", JSON.stringify(task));
+        botonEditar.textContent = 'Editar';
+        tareaNombre.contentEditable = "false";
+        tareaFecha.contentEditable = "false";
+        tareaCategoria.contentEditable = "false";
+        mostrarNotificacion("Tarea actualizada");
+    } else {
+        botonEditar.textContent = 'Guardar';
+        tareaNombre.contentEditable = "true";
+        tareaFecha.contentEditable = "true";
+        tareaCategoria.contentEditable = "true";
+    }
+}
+
 function obtenerDiasRestantes(fecha) {
     const fechaActual = new Date();
     const fechaLimite = new Date(fecha);
@@ -142,12 +170,18 @@ function eliminarTarea(e) {
     if (e.target.classList.contains("eliminar")) {
         const tareaID = Number(e.target.getAttribute("data-id"));
         const nuevasTareas = task.filter((item) => item.id !== tareaID);
-        mostrarNotificacion("Tarea completamente eliminada!");
+        experiencia -= 50; 
+        oro -= 1;
+        experiencia = Math.max(0, experiencia);
+        oro = Math.max(0, oro);
+
         task = nuevasTareas;
+        localStorage.setItem("tareas", JSON.stringify(task));
         agregarHTML();
         generarResumenCategorias();
-        mostrarNotificacion("Tarea eliminada con éxito");
+        actualizarEstadisticasDeTareas();
 
+        mostrarNotificacion("Tarea eliminada con éxito. Se te restaron puntos y experiencia.");
     }
 }
 function completarTarea(e) {
@@ -180,11 +214,11 @@ function actualizarEstadisticasDeTareas() {
 function mostrarNotificacion(mensaje) {
     const notificationContainer = document.getElementById('notification-container');
     const notification = document.getElementById('notification');
-    notification.textContent = mensaje; 
-    notificationContainer.style.display = 'block'; 
+    notification.textContent = mensaje;
+    notificationContainer.style.display = 'block';
 
     setTimeout(() => {
-        notificationContainer.style.display = 'none';
+        notificationContainer.style.display = 'none'; 
     }, 3000);
 }
 
@@ -257,28 +291,31 @@ function inicializarEstadisticas() {
     actualizarEstadisticasDeTareas();
 }
 function toggleDarkMode() {
-    var element = document.body;
-    element.classList.toggle("dark-mode"); // Cambia la clase del body
-    
-    // Cambia la clase de otros elementos si es necesario
-    var navbar = document.getElementById('myNavbar');
-    navbar.classList.toggle("dark-mode");
-    
-    var container = document.getElementById('resumenCategorias');
-    container.classList.toggle("dark-mode");
-    
-    // Actualizar el texto del botón de modo oscuro
+    var body = document.body;
+    body.classList.toggle("dark-mode");
+
     var button = document.getElementById('dark-mode-button');
-    if (button.textContent.includes("Oscuro")) {
+    if (body.classList.contains("dark-mode")) {
         button.textContent = "Modo Claro";
     } else {
         button.textContent = "Modo Oscuro";
     }
 }
-
-// Inicializar el modo oscuro si es preferido por el usuario (opcional)
 document.addEventListener('DOMContentLoaded', (event) => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        toggleDarkMode(); // Cambia al modo oscuro si el sistema del usuario está en modo oscuro
+        toggleDarkMode();
     }
 });
+function calcularDiasHastaFechaDefinida() {
+    var fechaDefinida = new Date('2024-04-01'); // Fecha definida
+    var fechaActual = new Date(); // Fecha actual
+    var diferenciaMilisegundos = fechaDefinida.getTime() - fechaActual.getTime();
+    var diferenciaDias = Math.ceil(diferenciaMilisegundos / (1000 * 3600 * 24));
+    return diferenciaDias;
+}
+
+function mostrarDiasRestantesEnNotificacion() {
+    var diasRestantes = calcularDiasHastaFechaDefinida();
+    var mensaje = `Días restantes hasta la fecha definida: ${diasRestantes}`;
+    mostrarNotificacion(mensaje);
+}

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Task</title>
     <style>
+      
       /* Mejoras generales en el estilo de los paneles de categorías */
 .w3-container.w3-card.w3-white.w3-padding-16 {
     background-color: #fff; /* Color de fondo claro */
@@ -395,9 +396,6 @@
                 <input class="w3-input" type="text" placeholder="Nombre de la tarea" id="tarea">
                 <input class="w3-input" type="text" placeholder="Detalles" id="tarea">
                 <input class="w3-input" type="date" placeholder="Fecha " id="fechaTarea">
-                <select id="opcion" name="opcion">
-                </select><br><br>
-                <button type="button" onclick="agregarOpcion()">Agregar Opción</button><br><br>
                 <input onclick="ocultarFormulario()" class="w3-input" type="submit" value="Agregar">
                 <select id="categoria" class="w3-select">
                   <option value="">Seleccione una categoría</option>
@@ -442,7 +440,7 @@
                       <div id="health" class="bar" style="width: 100%;"></div>
                     </div>
                   </span>
-                  <span class="flex-2">50/50</span>
+                  <span class="flex-2"></span>
                 </div>
                 <div class="row flex-1 center-items">
                   <span class="flex-1">
@@ -453,7 +451,7 @@
                       <div id="xp" class="bar" style="width: 0%;"></div>
                     </div>
                   </span>
-                  <span class="flex-2">0/2300</span>
+                  <span class="flex-2"></span>
           
                 </div>
               </div>
@@ -482,6 +480,7 @@
       <h2>Resumen de Tareas por Categoría</h2>
 
     </div>
-    
+    <button onclick="mostrarDiasRestantesEnNotificacion()">Mostrar Días Restantes</button>
+
 
 </html>
