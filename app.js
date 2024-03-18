@@ -19,12 +19,13 @@ var opciones = ["Opción 1", "Opción 2", "Opción 3"];
         
     })
 })()
-
+let idglobal = 0;
 let nivel = 1; // El nivel inicia en 1
 let experiencia = 0;
 let oro = 0; // Oro inicial
 let tareasCompletadas = 0;
 let vida = 50;
+let flageditar = false;
 
 function generarOpciones() {
     var select = document.getElementById("opcion");
@@ -58,21 +59,34 @@ function mostrarFormulario() {
   function validarFormulario(e) {
     e.preventDefault();
     const tareaInput = document.querySelector("#tarea");
+    const detalleInput = document.querySelector("#detalle");
     const fechaInput = document.querySelector("#fechaTarea");
     const categoriaSelect = document.querySelector("#categoria");
     const tarea = tareaInput.value;
+    const detalle = detalleInput.value;
     const fecha = fechaInput.value;
     const categoria = categoriaSelect.value;
-    if (tarea.trim() === '' || fecha.trim() === '' || categoria.trim() === '') {
+    if (tarea.trim() === '' || detalle.trim() === '' || fecha.trim() === '' || categoria.trim() === '') {
         console.log('Todos los campos son obligatorios.');
         return;
     }
-    const objTarea = { id: Date.now(), tarea, estado: false, fecha, categoria };
-    task.push(objTarea);
-    localStorage.setItem("tareas", JSON.stringify(task));
-    formulario.reset();
+    if (flageditar) {
+        task[task.findIndex(tarea => tarea.id === idglobal)].tarea = tarea;
+        task[task.findIndex(tarea => tarea.id === idglobal)].detalle = detalle;
+        task[task.findIndex(tarea => tarea.id === idglobal)].fecha = fecha;
+        task[task.findIndex(tarea => tarea.id === idglobal)].categoria = categoria;
+        mostrarNotificacion("Tarea actualizada");
+    }else{
+        const objTarea = { id: Date.now(), tarea, detalle, estado: false, fecha, categoria };
+        task.push(objTarea);
+        localStorage.setItem("tareas", JSON.stringify(task));
+        formulario.reset();
+    }
+    flageditar=false;
+    
     agregarHTML();
     generarResumenCategorias();
+    
 }
 
 
@@ -116,7 +130,7 @@ function agregarHTML() {
                 </header>
                 <div class="card-content">
                 <div class="content">
-                    ${item.tarea}
+                    ${item.detalle}
                     <br>
                     ${item.categoria}
                     <br>
@@ -148,6 +162,7 @@ function agregarHTML() {
 }
 
 function editarTarea(id) {
+<<<<<<< HEAD
     const tareaNombre = document.getElementById(`tarea-nombre-${id}`);
     const tareaFecha = document.getElementById(`tarea-fecha-${id}`);
     const tareaCategoria = document.getElementById(`tarea-categoria-${id}`);
@@ -173,6 +188,12 @@ function editarTarea(id) {
     }
     mostrarNotificacion("Tarea actualizada");
     generarResumenCategorias(); 
+=======
+    mostrarFormulario();
+    idglobal=id;
+    flageditar=true;
+    validarFormulario;
+>>>>>>> 0aa80c2dda3b0f1b4549b2504cf770ae0da75edf
 }
 
 function obtenerDiasRestantes(fecha) {
@@ -201,22 +222,31 @@ function eliminarTarea(e) {
     }
 }
 function completarTarea(e) {
+    
     if (e.target.classList.contains("completada")) {
         const tareaID = Number(e.target.getAttribute("data-id"));
         const tareaCompletada = task.find(item => item.id === tareaID);
-        if (!tareaCompletada.estado) { 
-            experiencia += 100;
-            oro += 2; 
-            if (experiencia >= 1000) { 
-                experiencia -= 1000; 
-                nivel++;
+        var diasRestantes = obtenerDiasRestantes(task.find(item => item.id === tareaID).fecha);
+        console.log(diasRestantes);
+        if (diasRestantes>0) {
+            if (!tareaCompletada.estado) { 
+                experiencia += 100;
+                oro += 2; 
+                if (experiencia >= 1000) { 
+                    experiencia -= 1000; 
+                    nivel++;
+                }
+                tareaCompletada.estado = !tareaCompletada.estado; 
+                mostrarNotificacion("Tarea completada! +100 XP y +2 de oro");
+                actualizarEstadisticasDeTareas();
             }
-            tareaCompletada.estado = !tareaCompletada.estado; 
-            mostrarNotificacion("Tarea completada! +100 XP y +2 de oro");
+        }else{
+            vida -= 2;
+            actualizarEstadisticasDeTareas2();
         }
         localStorage.setItem("tareas", JSON.stringify(task));
         agregarHTML();
-        actualizarEstadisticasDeTareas();
+        
     }
 }
 function actualizarEstadisticasDeTareas() {
@@ -225,6 +255,11 @@ function actualizarEstadisticasDeTareas() {
     document.getElementById("$av").textContent = "0"; 
     const porcentajeXP = (experiencia / 1000) * 100;
     document.getElementById("xp").style.width = `${porcentajeXP}%`;
+
+}
+function actualizarEstadisticasDeTareas2() {
+    const porcentajeVIDA = (vida / 50) * 100;
+    document.getElementById("health").style.width = `${porcentajeVIDA}%`;
 
 }
 function mostrarNotificacion(mensaje) {
