@@ -98,7 +98,7 @@ function agregarHTML() {
             elemento.classList.add('w3-border-blue');
             elemento.classList.add('w3-border-blue');
             elemento.innerHTML = `
-
+            
                 <h4 class="w3-cursive">${item.estado ? (
                     `<span class='completa'>${item.tarea}</span>`
                 ) : (
@@ -136,16 +136,13 @@ function agregarHTML() {
 function eliminarTarea(e) {
     if (e.target.classList.contains("eliminar")) {
         const tareaID = Number(e.target.getAttribute("data-id"));
-        const tareaParaEliminar = task.find(item => item.id === tareaID);
-        if (!tareaParaEliminar.estado) {
-            experiencia = Math.max(0, experiencia - 50);
-            oro = Math.max(0, oro - 1);
-            mostrarNotificacion("Tarea eliminada: -50 XP y -1 de oro");
-        }
-        task = task.filter(item => item.id !== tareaID);
-        localStorage.setItem("tareas", JSON.stringify(task));
+        const nuevasTareas = task.filter((item) => item.id !== tareaID);
+        mostrarNotificacion("Tarea completamente eliminada!");
+        task = nuevasTareas;
         agregarHTML();
-        actualizarEstadisticasDeTareas();
+        generarResumenCategorias();
+        mostrarNotificacion("Tarea eliminada con éxito");
+
     }
 }
 function completarTarea(e) {
@@ -173,6 +170,7 @@ function actualizarEstadisticasDeTareas() {
     document.getElementById("$av").textContent = "0"; 
     const porcentajeXP = (experiencia / 1000) * 100;
     document.getElementById("xp").style.width = `${porcentajeXP}%`;
+
 }
 function mostrarNotificacion(mensaje) {
     const notificationContainer = document.getElementById('notification-container');
