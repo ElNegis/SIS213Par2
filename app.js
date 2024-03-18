@@ -199,22 +199,30 @@ function eliminarTarea(e) {
     }
 }
 function completarTarea(e) {
+    
     if (e.target.classList.contains("completada")) {
         const tareaID = Number(e.target.getAttribute("data-id"));
         const tareaCompletada = task.find(item => item.id === tareaID);
-        if (!tareaCompletada.estado) { 
-            experiencia += 100;
-            oro += 2; 
-            if (experiencia >= 1000) { 
-                experiencia -= 1000; 
-                nivel++;
+        const diasRestantes = obtenerDiasRestantes(task.find(item => item.fecha));
+        if (diasRestantes>0) {
+            if (!tareaCompletada.estado) { 
+                experiencia += 100;
+                oro += 2; 
+                if (experiencia >= 1000) { 
+                    experiencia -= 1000; 
+                    nivel++;
+                }
+                tareaCompletada.estado = !tareaCompletada.estado; 
+                mostrarNotificacion("Tarea completada! +100 XP y +2 de oro");
+                actualizarEstadisticasDeTareas();
             }
-            tareaCompletada.estado = !tareaCompletada.estado; 
-            mostrarNotificacion("Tarea completada! +100 XP y +2 de oro");
+        }else{
+            vida -= 2;
+            actualizarEstadisticasDeTareas2();
         }
         localStorage.setItem("tareas", JSON.stringify(task));
         agregarHTML();
-        actualizarEstadisticasDeTareas();
+        
     }
 }
 function actualizarEstadisticasDeTareas() {
@@ -223,6 +231,11 @@ function actualizarEstadisticasDeTareas() {
     document.getElementById("$av").textContent = "0"; 
     const porcentajeXP = (experiencia / 1000) * 100;
     document.getElementById("xp").style.width = `${porcentajeXP}%`;
+
+}
+function actualizarEstadisticasDeTareas2() {
+    const porcentajeVIDA = (vida / 50) * 100;
+    document.getElementById("health").style.width = `${porcentajeVIDA}%`;
 
 }
 function mostrarNotificacion(mensaje) {
