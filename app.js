@@ -132,6 +132,12 @@ function agregarHTML() {
     actualizarEstadisticasDeTareas();
 
 }
+function obtenerDiasRestantes(fecha) {
+    const fechaActual = new Date();
+    const fechaLimite = new Date(fecha);
+    const tiempoRestante = fechaLimite - fechaActual;
+    return Math.ceil(tiempoRestante / (1000 * 60 * 60 * 24));
+}
 
 function eliminarTarea(e) {
     if (e.target.classList.contains("eliminar")) {
@@ -251,3 +257,29 @@ function inicializarEstadisticas() {
     vida = 50;
     actualizarEstadisticasDeTareas();
 }
+function toggleDarkMode() {
+    var element = document.body;
+    element.classList.toggle("dark-mode"); // Cambia la clase del body
+    
+    // Cambia la clase de otros elementos si es necesario
+    var navbar = document.getElementById('myNavbar');
+    navbar.classList.toggle("dark-mode");
+    
+    var container = document.getElementById('resumenCategorias');
+    container.classList.toggle("dark-mode");
+    
+    // Actualizar el texto del botón de modo oscuro
+    var button = document.getElementById('dark-mode-button');
+    if (button.textContent.includes("Oscuro")) {
+        button.textContent = "Modo Claro";
+    } else {
+        button.textContent = "Modo Oscuro";
+    }
+}
+
+// Inicializar el modo oscuro si es preferido por el usuario (opcional)
+document.addEventListener('DOMContentLoaded', (event) => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        toggleDarkMode(); // Cambia al modo oscuro si el sistema del usuario está en modo oscuro
+    }
+});

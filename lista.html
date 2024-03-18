@@ -14,6 +14,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Task</title>
     <style>
+        /* Modo oscuro */
+  .dark-mode {
+    background-color: #1a1a1a;
+    color: white;
+  }
+
+  .dark-mode .w3-bar,
+  .dark-mode .w3-button,
+  .dark-mode .w3-container,
+  .dark-mode .w3-card {
+    background-color: #213a57;
+    color: rgb(238, 158, 248);
+}
         * {
             margin: 0px;
         }
@@ -210,7 +223,7 @@
   font-family: "Roboto Condensed", sans-serif;
   height: 10.5em;
   width: 30em;
-  color: #d5c8ff;
+  color: #c8c9ff;
   line-height: 1;
   font-size: 12px;
 }
@@ -297,6 +310,7 @@
 </head>
 
 <body>
+
     <div class="w3-top">
         <div class="w3-bar" id="myNavbar">
             <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
@@ -310,16 +324,15 @@
                 <i class="fa fa-search"></i>
             </a>
         </div>
-
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
             <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">GRUPO</a>
             <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">APLICACION</a>
             <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+
         </div>
-
     </div>
-
+    
     <div class="w3-content w3-container w3-padding-64 bgimg-1 w3-display-container w3-opacity-min">
         <div class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
             <p id="total">Total tareas: 0</p>
@@ -329,7 +342,7 @@
     </div>
 
     <button id="boton-flotante" onclick="mostrarFormulario()">Mostrar Formulario</button>
-
+    <button onclick="toggleDarkMode()" id="dark-mode-button">Modo Oscuro</button>
 
     <div id="formularioap" class="w3-card-4">
 
