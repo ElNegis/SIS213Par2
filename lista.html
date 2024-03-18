@@ -405,7 +405,7 @@
         <form class="w3-container" id="formulario">
             <div class="w3-container w3-margin" >
                 <input class="w3-input" type="text" placeholder="Nombre de la tarea" id="tarea">
-                <input class="w3-input" type="text" placeholder="Detalles" id="tarea">
+                <input class="w3-input" type="text" placeholder="Detalles" id="detalle">
                 <input class="w3-input" type="date" placeholder="Fecha " id="fechaTarea">
                 <input onclick="ocultarFormulario()" class="w3-input" type="submit" value="Agregar">
                 <select id="categoria" class="w3-select">
@@ -492,7 +492,7 @@
 
     </div>
     <button onclick="mostrarDiasRestantesEnNotificacion()">Mostrar Días Restantes</button>
-    <div class="card">
+    <div class="card" style="z-index: 3;">
       <button id="boton-flotante" onclick="mostrarFormulario()">Mostrar Formulario</button>
     </div>
 
