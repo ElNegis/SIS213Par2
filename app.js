@@ -12,11 +12,18 @@ var opciones = ["Opción 1", "Opción 2", "Opción 3"];
     document.addEventListener("DOMContentLoaded", () => {
         let datosLS = JSON.parse(localStorage.getItem("tareas")) || [];
         task = datosLS;
+        inicializarEstadisticas();
         generarResumenCategorias();
         agregarHTML();
         
     })
 })()
+
+let nivel = 1; // El nivel inicia en 1
+let experiencia = 0;
+let oro = 0; // Oro inicial
+let tareasCompletadas = 0;
+let vida = 50;
 
 function generarOpciones() {
     var select = document.getElementById("opcion");
@@ -91,7 +98,7 @@ function agregarHTML() {
             elemento.classList.add('w3-border-blue');
             elemento.classList.add('w3-border-blue');
             elemento.innerHTML = `
-            
+
                 <h4 class="w3-cursive">${item.estado ? (
                     `<span class='completa'>${item.tarea}</span>`
                 ) : (
@@ -129,32 +136,43 @@ function agregarHTML() {
 function eliminarTarea(e) {
     if (e.target.classList.contains("eliminar")) {
         const tareaID = Number(e.target.getAttribute("data-id"));
-        const nuevasTareas = task.filter((item) => item.id !== tareaID);
-        mostrarNotificacion("Tarea completamente eliminada!");
-        task = nuevasTareas;
+        const tareaParaEliminar = task.find(item => item.id === tareaID);
+        if (!tareaParaEliminar.estado) {
+            experiencia = Math.max(0, experiencia - 50);
+            oro = Math.max(0, oro - 1);
+            mostrarNotificacion("Tarea eliminada: -50 XP y -1 de oro");
+        }
+        task = task.filter(item => item.id !== tareaID);
+        localStorage.setItem("tareas", JSON.stringify(task));
         agregarHTML();
-        generarResumenCategorias();
-        mostrarNotificacion("Tarea eliminada con éxito");
-
+        actualizarEstadisticasDeTareas();
     }
 }
 function completarTarea(e) {
     if (e.target.classList.contains("completada")) {
         const tareaID = Number(e.target.getAttribute("data-id"));
-        const nuevasTareas = task.map(item => {
-            if (item.id === tareaID) {
-                mostrarNotificacion("Tarea completada!");
-                item.estado = !item.estado;
-                return item;
-            } else {
-                return item
+        const tareaCompletada = task.find(item => item.id === tareaID);
+        if (!tareaCompletada.estado) { 
+            experiencia += 100;
+            oro += 2; 
+            if (experiencia >= 1000) { 
+                experiencia -= 1000; 
+                nivel++;
             }
-        })
-        task = nuevasTareas;
+            tareaCompletada.estado = !tareaCompletada.estado; 
+            mostrarNotificacion("Tarea completada! +100 XP y +2 de oro");
+        }
+        localStorage.setItem("tareas", JSON.stringify(task));
         agregarHTML();
-        generarResumenCategorias();
-        
+        actualizarEstadisticasDeTareas();
     }
+}
+function actualizarEstadisticasDeTareas() {
+    document.getElementById("avatar-level").textContent = "Level " + nivel;
+    document.getElementById("$au").textContent = oro;
+    document.getElementById("$av").textContent = "0"; 
+    const porcentajeXP = (experiencia / 1000) * 100;
+    document.getElementById("xp").style.width = `${porcentajeXP}%`;
 }
 function mostrarNotificacion(mensaje) {
     const notificationContainer = document.getElementById('notification-container');
@@ -228,5 +246,10 @@ function generarResumenCategorias() {
 
     resumen.innerHTML = contenidoHTML; 
 }
-
-
+function inicializarEstadisticas() {
+    nivel = 1;
+    oro = 0;
+    tareasCompletadas = 0; 
+    vida = 50;
+    actualizarEstadisticasDeTareas();
+}
