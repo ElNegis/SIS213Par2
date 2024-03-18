@@ -89,26 +89,48 @@ function agregarHTML() {
 
             const elemento = document.createElement('div');
             elemento.classList.add('w3-col');
-            elemento.classList.add('l2');
+            elemento.classList.add('l3');
             elemento.classList.add('m6');
+            elemento.classList.add('container');
             elemento.classList.add('w3-margin-bottom');
             elemento.classList.add('w3-margin');
             elemento.classList.add('w3-panel');
-            elemento.classList.add('w3-pale-blue');
-            elemento.classList.add('w3-leftbar');
-            elemento.classList.add('w3-rightbar');
-            elemento.classList.add('w3-border-blue');
-            elemento.classList.add('w3-border-blue');
+            //elemento.innerHTML = `
+            //    <h4 class="w3-cursive">${item.estado ? `<span class='completa'>${item.tarea}</span>` : `<span>${item.tarea}</span>`}</h4>
+            //    <div class="botones w3-padding w3-half">
+            //        <h4><small>${item.fecha}</small></h4>
+            //        <h4 class="w3-cursive">${item.categoria}</h4>
+            //        <div>Días restantes: <span class="dias-restantes">${diasRestantes}</span></div> <!-- Añadido -->
+            //        <button class="editar w3-button" onclick="editarTarea(${item.id})">Editar</button>
+            //        <button class="eliminar w3-button" data-id="${item.id}">Eliminar</button>
+            //        <button class="completada w3-button" data-id="${item.id}">Completar</button>
+            //    </div>
+            //`;
             elemento.innerHTML = `
-                <h4 class="w3-cursive">${item.estado ? `<span class='completa'>${item.tarea}</span>` : `<span>${item.tarea}</span>`}</h4>
-                <div class="botones w3-padding w3-half">
-                    <h4><small>${item.fecha}</small></h4>
-                    <h4 class="w3-cursive">${item.categoria}</h4>
-                    <div>Días restantes: <span class="dias-restantes">${diasRestantes}</span></div> <!-- Añadido -->
-                    <button class="editar w3-button" onclick="editarTarea(${item.id})">Editar</button>
-                    <button class="eliminar w3-button" data-id="${item.id}">Eliminar</button>
-                    <button class="completada w3-button" data-id="${item.id}">Completar</button>
+            <div class="card" style="z-index: 1;">
+                <header class="card-header">
+                <p class="card-header-title">
+                ${item.estado ? `<span class='completa'>${item.tarea}</span>` : `<span>${item.tarea}</span>`}
+                </p>
+                
+                </header>
+                <div class="card-content">
+                <div class="content">
+                    ${item.tarea}
+                    <br>
+                    ${item.categoria}
+                    <br>
+                    <time datetime="2016-1-1">${item.fecha}</time>
+                    <br>
+                    Días restantes: <span class="dias-restantes">${diasRestantes}</span>
                 </div>
+                </div>
+                <footer class="card-footer">
+                <a href="#" class="completada card-footer-item" data-id="${item.id}">Completar</a>
+                <a href="#" class="editar card-footer-item" onclick="editarTarea(${item.id})">Editar</a>
+                <a href="#" class="eliminar card-footer-item" data-id="${item.id}">Eliminar</a>
+                </footer>
+            </div>
             `;
             tareas.appendChild(elemento);
         });

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
     <title>Task</title>
     <style>
       
@@ -45,6 +46,15 @@
     margin-bottom: 10px; 
 }
 
+.container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  grid-gap: 0.5em;
+}
+
+.card{
+  height: max-content;
+}
 
 #resumenCategorias .w3-col {
     padding: 0 8px; 
@@ -351,7 +361,8 @@
 </head>
 
 <body>
-
+ <br>
+ <br>
     <div class="w3-top">
         <div class="w3-bar" id="myNavbar">
             <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
@@ -359,6 +370,7 @@
                 <i class="fa fa-bars"></i>
             </a>
             <a href="index.html" class="w3-bar-item w3-button" style="color: #f0f8ff;">HOME</a>
+            <button class="w3-bar-item w3-button" onclick="toggleDarkMode()" id="dark-mode-button" style="color: #f0f8ff">Modo Oscuro</button>
             <a href="lista.html" class="w3-bar-item w3-button w3-hide-small" style="color: #f0f8ff;"><i
                     class="fa fa-th"></i> Listado de tareas</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
@@ -374,18 +386,11 @@
         </div>
     </div>
     
-    <div class="w3-content w3-container w3-padding-64 bgimg-1 w3-display-container w3-opacity-min">
-        <div class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-            <p id="total">Total tareas: 0</p>
-            <p id="completadas">Tareas Completadas: 0</p>
-            <button class="w3-button" id="generarInformeBtn">Generar Informe</button>
-        </div>
-    </div>
+    
+    
+    
 
-    <button id="boton-flotante" onclick="mostrarFormulario()">Mostrar Formulario</button>
-    <button onclick="toggleDarkMode()" id="dark-mode-button">Modo Oscuro</button>
-
-    <div id="formularioap" class="w3-card-4">
+    <div id="formularioap" class="w3-card-4 card" style="z-index: 2;">
 
         <header class="w3-container w3-blue">
           <h1>TaskVerse</h1>
@@ -461,7 +466,7 @@
     <div class="w3-container">
 
         
-        
+      
 
         <div class="tareas w3-container w3-khaki w3-row-padding" id="tareas">
             
@@ -481,6 +486,9 @@
 
     </div>
     <button onclick="mostrarDiasRestantesEnNotificacion()">Mostrar Días Restantes</button>
+    <div class="card">
+      <button id="boton-flotante" onclick="mostrarFormulario()">Mostrar Formulario</button>
+    </div>
 
 
 </html>
