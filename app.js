@@ -89,7 +89,27 @@ function mostrarFormulario() {
     
 }
 
-
+function manternerVidaActiva(){
+    const fehca= fechaInput.value;
+    const categoria = categoriaSelect.value;
+    if(tarea.trim() ==='' || detalle.trim() ==='' || fecha.trim()===''|| categoria.trim()===''){
+        console.log('Todos los campos estan necesariamente obligados para realizar');
+        return;
+    }
+    if(flageditar){
+        tast [task.findIndex(tarea => tarea.id=== idglobal)].tarea = tarea;
+        task [task.findIndex(tarea => tarea.id ===idglobal)].detalle=detalle;
+        task[task.findIndex(tarea => tarea.id=== idglobal)].fecha = fecha;
+        task[task.findIndex(tarea=>tarea.id===idglobal)].categoria=categoria;
+        mostrarNotificacion("tarea acrualizada");
+    }else{
+        const objTarea = {id : Date.now(),tarea,detalle, estado: false,fecha,categoria};
+        task.push(objTarea);
+        localStorage.setItem("tarea",JSON.stringify(task));
+        formulario.reset();
+    }
+    
+}
 
 function agregarHTML() {
     while (tareas.firstChild) {
@@ -280,7 +300,7 @@ function generarResumenCategorias() {
         'Deportes': [],
         'Casa': [],
         'Salud': [],
-        'Escuela': []
+        'Escuela': [],
     };
 
     task.forEach(tarea => {
