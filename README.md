@@ -1,34 +1,43 @@
-# SIS213Par2
-# Lista de tareas
-* Santiago Carlos Machicado Tarifa (1 programador)
-* Mauricio Gutierrez Pacheco (2 programador)
+## Equipo y Proyecto
+Equipo: Sindicato Figueroa
 
-En la siguiente aplicacion se realizara un programa que realize el control y listado de tareas de manera remota que contenga horarios y que mureste que la tarea se realizo.
+| Rol | Nombre | Responsabildades |
 
-## Analisis del problema
-El desarrollo de la aplicación de lista de tareas plantea la necesidad de diseñar una interfaz intuitiva que permita a los usuarios agregar, marcar como completadas y eliminar tareas. Además, se requiere una funcionalidad para generar informes clasificados por el estado de las tareas. Para abordar estos requisitos, es crucial implementar un sistema de almacenamiento de datos, proporcionar notificaciones. Los desafíos incluye el diseño de interfaces, programacion de buen nivel. En resumen, la aplicación debe ser una solución integral que combine una sólida arquitectura técnica con una experiencia de usuario amigable.
-## Diseño
-La aplicacion de lista de tareas que permita a los usuarios agregar nuevas tareas, marcarlas como completadas eliminarlas de la lista generar reportes por estados de tareas en curso y completarlas
-* Agregar nuevas tareas (1 programador):
-Esta función implica la capacidad de que los usuarios ingresen información sobre nuevas tareas a realizar.
-Se debe considerar la inclusión de detalles como nombre de la tarea, fecha de vencimiento, prioridad, etc.
-* Marcar tareas como completadas (2 programador):
-La aplicación debe permitir a los usuarios indicar que una tarea específica ha sido completada.
-Esto implica una interfaz que permita al usuario interactuar fácilmente con la lista y actualizar el estado de cada tarea.
-* Eliminar tareas de la lista(2 programador):
-La capacidad de eliminar tareas de la lista implica una gestión eficiente de las tareas tanto desde la interfaz de usuario como en la estructura de datos subyacente.
-* Generar reportes por estados de tareas (1 programador):
-Se requiere una funcionalidad que permita generar informes sobre las tareas en función de su estado, como en curso o completadas.
-Esto implica una lógica de filtrado y presentación de datos de manera clara y comprensible.
-* Completar tareas (2 programador):
-Además de marcar tareas como completadas, parece haber un énfasis en la capacidad de "completar" tareas de alguna manera específica.
-Puede implicar la inclusión de un historial de actividades o un registro de cuando y quién completó una tarea.
+|--------------|----------|--------------------------------------------------------|
 
+| Scrum Master | Fernando Acarapi | Faciltar el proceso Scrum, eliminar obstáculos, Validar cada uno de los incrementos del product. |
 
-## Heramientas
+| Product Owner | Camilo Mendez | Representar las necesidades del ciente y gestionar el Product Backlog. |
 
-Se utilizara las heramientas:
-* GitHub
-* Html
-* Css
-* JavaScript
+| Desarrolladores | Santiago Machicado, Mauricio Gutierrez, Camilo Mendez | Desarrollar y entregar incrementos de producto |
+
+| Diseñador UI/UX | Camilo Mendez, Sergio Ticona, Camilo Mendez | Diseñar la apariencia visual y la experiencia de usuario |
+
+| Analista de Calidad | Fernando Acarapi | Garantizar que el producto cumplancon los estándares de calidad establecidos |
+
+| DevOps | Alex Quino, Camilo Mendez | Facilitar la entrega rápida y confiable de software |
+
+| Arquitecto de Software | Mauricio Gutierrez, Camilo Mendez |  Diseñar la estructura del software para garantizar que cumpla con los requisitos funcionales y no funcionales |
+
+## Proyecto
+
+El proyecto “Liz to Eat”  se encarga de proporcionar un sistema eficaz para la solicitud de reserva para posteriormente
+confirmar compra de un platillo , siendo nuestro objetivo satisfacer las necesidades culinarias de la zona de achumani,
+se cuenta con un presupuesto limitado pero con un gran valor de recursos humanos.
+
+## Normas del Equipo
+
+- Comunicación: Unlizamos Discord y Whatsapp para mantenemos actualizados y
+comunicarnos eficazmente.
+
+- Reuniones: Celebramos reuniones de Sprint Planning, Daly Scrum, Sprint Review y Sprint
+Retrospective según el calendario acordado.
+
+- Resolución de Confictos: Los confictos se abordan de manera constructiva y se resuelven de
+forma colaborativa con la participación de todas las partes involucradas.
+
+- Entrega de Trabajo: Se espera que cada miembro del equipo entregue su trabajo dentro de los
+plazos establecidos y de acuerdo con la definición de "Hecho".
+
+- Distribución de Trabajo: Se espera que cada miembro del equipo realice una parte del trabajo
+de forma que todos trabajen de forma equitativa.
